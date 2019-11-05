@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="dependences/Semantic-UI-CSS-master/semantic.min.css">
+    <script src="dependences/jquery-3.4.1.min.js"></script>
+    <script src="dependences/Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="dependences/vector.js"></script>
+    <title>Transformações Lineares</title>
+</head>
+
+<body>
+    <div class="ui container">
+
+        <h1>Transformações Lineares Planas</h1>
+
+        <div class="ui two column stackable grid">
+
+            <div class="column">
+                <div class="row">
+                    <div class="ui message">
+                        <div class="ui header">
+                            <h3>Plano:</h3>
+                        </div>
+                        <div class="ui divider"></div>
+                        <canvas id="canvas" style="border: solid 2px black; border-radius: 25px;" height="500"
+                            width="500"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="row">
+                    <div class="ui message">
+                        <div class="header">
+                            <h3>Vetores:</h3>
+                        </div>
+                        <div class="ui divider"></div>
+                        <form class="ui form" id="vetores">
+                            <div class="two wide field">
+                                <label>Eixo X</label>
+                                <input type="text" name="eixo-x" id="eixo-x">
+                            </div>
+                            <div class="two wide field">
+                                <label>Eixo Y</label>
+                                <input type="text" name="eixo-y" id="eixo-y">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="ui message">
+                    <div class="header">
+                        <h3>Operações:</h3>
+                        <div class="ui divider"></div>
+                        <div class="row">
+                            <div class="ui top attached tabular menu">
+                                <a class="item active" data-tab="reflexoes">Reflexões</a>
+                                <a class="item" data-tab="dilatacoes">Dilatações e Contrações</a>
+                                <a class="item" data-tab="cisalhamento">Cisalhamentos</a>
+                                <a class="item" data-tab="rotacao">Rotação</a>
+                            </div>
+
+                            <!-- ################################################################################################ -->
+
+                            <div class="ui bottom attached tab segment active" data-tab="reflexoes">
+                                <div class="column">
+                                    <div class="ui form" id="form-reflexao">
+                                        <div class="field">
+                                            <div class="grouped fields">
+                                                <label>Eixo:</label>
+                                                <div class="field">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="eixo-reflexao" value="origem" checked="checked">
+                                                        <label>Origem</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="eixo-reflexao" value="x">
+                                                        <label>X</label>
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <div class="ui radio checkbox">
+                                                        <input type="radio" name="eixo-reflexao" value="y">
+                                                        <label>Y</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="aplicar-reflexao" class="ui primary button">
+                                            Aplicar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ui divider"></div>
+                                <div class="column">
+                                    <div class="ui items" id="explicacao" style="display:none;">
+                                        <div class="item">
+                                            <div class="middle aligned content">
+                                                <div class="header">
+                                                    <span id="explicacao-reflexao"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ################################################################################################ -->
+
+                            <div class="ui bottom attached tab segment" data-tab="dilatacoes">
+                                <div class="ui form">
+                                    <div class="three wide field">
+                                        <label>Valor:</label>
+                                        <input type="text" id="valor-dilatacao">
+                                    </div>
+                                    <button id="aplicar-dilatacao" class="ui primary button">
+                                        Aplicar
+                                    </button>
+                                </div>
+                                <div class="ui divider"></div>
+                                <div class="ui items" id="item-dilatacao" style="display:none;">
+                                    <div class="item">
+                                        <div class="middle aligned content">
+                                            <div class="header">
+                                                <span id="explicacao-dilatacao"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ################################################################################################ -->
+
+                            <div class="ui bottom attached tab segment" data-tab="cisalhamento">
+                                <div class="ui form">
+                                    <div class="field">
+                                        <label>User Input</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ################################################################################################ -->
+
+                            <div class="ui bottom attached tab segment" data-tab="rotacao">
+                                <div class="ui form">
+                                    <div class="field">
+                                        <label>User Input</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.menu .item').tab();
+            $('.ui.radio.checkbox').checkbox();
+        });
+    </script>
+</body>
+
+</html>
