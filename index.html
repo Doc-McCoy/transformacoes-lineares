@@ -14,7 +14,6 @@
 
 <body>
     <div class="ui container">
-
         <h1>Transformações Lineares Planas</h1>
 
         <div class="ui two column stackable grid">
@@ -33,22 +32,36 @@
             </div>
 
             <div class="column">
-                <div class="row">
-                    <div class="ui message">
-                        <div class="header">
-                            <h3>Vetores:</h3>
+                <div class="ui message">
+                    <div class="header">
+                        <h3>Vetores:</h3>
+                    </div>
+
+                    <div class="ui divider"></div>
+
+                    <div class="ui equal width grid" id="inputs-vetores">
+                        <div class="column">
+                            <form class="ui form" id="vetores">
+                                <div class="field">
+                                    <label>Quantidade</label>
+                                    <input type="text" name="quant-vetores" id="quant-vetores">
+                                </div>
+                            </form>
                         </div>
-                        <div class="ui divider"></div>
-                        <form class="ui form" id="vetores">
-                            <div class="two wide field">
-                                <label>Eixo X</label>
-                                <input type="text" name="eixo-x" id="eixo-x">
-                            </div>
-                            <div class="two wide field">
-                                <label>Eixo Y</label>
-                                <input type="text" name="eixo-y" id="eixo-y">
-                            </div>
-                        </form>
+
+                        <div class="column vetor" style="display:none;">
+                            <form class="ui form" id="vetores">
+                                <div class="field">
+                                    <label>Eixo X</label>
+                                    <input type="text" name="eixo-x" id="eixo-x">
+                                </div>
+                                <div class="field">
+                                    <label>Eixo Y</label>
+                                    <input type="text" name="eixo-y" id="eixo-y">
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
@@ -74,7 +87,8 @@
                                                 <label>Eixo:</label>
                                                 <div class="field">
                                                     <div class="ui radio checkbox">
-                                                        <input type="radio" name="eixo-reflexao" value="origem" checked="checked">
+                                                        <input type="radio" name="eixo-reflexao" value="origem"
+                                                            checked="checked">
                                                         <label>Origem</label>
                                                     </div>
                                                 </div>

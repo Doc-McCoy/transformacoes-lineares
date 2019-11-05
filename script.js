@@ -38,6 +38,16 @@ function update_inputs() {
     });
 }
 
+function change_vectors_count() {
+    let quant_vetores = $('#quant-vetores').val();
+    for (let i = 0; i < quant_vetores; i++) {
+        let div = $('.vetor').clone();
+        let coluna = $('#inputs-vetores');
+        // Coluna.append(div);
+        // div.show();
+    }
+}
+
 function map(value, x1, y1, x2, y2) {
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 }
