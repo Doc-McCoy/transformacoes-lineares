@@ -71,9 +71,9 @@
                         <div class="ui divider"></div>
                         <div class="row">
                             <div class="ui top attached tabular menu">
-                                <a class="item active" data-tab="reflexoes">Reflexões</a>
-                                <a class="item" data-tab="dilatacoes">Dilatações e Contrações</a>
-                                <a class="item" data-tab="cisalhamento">Cisalhamentos</a>
+                                <a class="item active" data-tab="reflexoes">Reflexão</a>
+                                <a class="item" data-tab="dilatacoes">Dilatação / Contração</a>
+                                <a class="item" data-tab="cisalhamento">Cisalhamento</a>
                                 <a class="item" data-tab="rotacao">Rotação</a>
                             </div>
 
@@ -163,11 +163,22 @@
                             <!-- ################################################################################################ -->
 
                             <div class="ui bottom attached tab segment" data-tab="rotacao">
-                                <div class="ui form">
+                                <div class="ui form" id="form-rotacao">
                                     <div class="field">
-                                        <label>User Input</label>
-                                        <input type="text">
+                                        <label>Graus</label>
+                                        <input type="text" name="graus" id="graus">
                                     </div>
+                                    <div class="field">
+                                        <label>Centro X</label>
+                                        <input type="text" name="centro-x" id="centro-x">
+                                    </div>
+                                    <div class="field">
+                                        <label>Centro Y</label>
+                                        <input type="text" name="centro-y" id="centro-y">
+                                    </div>
+                                    <button id="aplicar-rotacao" class="ui primary button">
+                                        Aplicar
+                                    </button>
                                 </div>
                             </div>
 

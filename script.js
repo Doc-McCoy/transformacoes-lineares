@@ -65,9 +65,13 @@ function map_vector(vector) {
 
 function reflexao() {
     const eixo = $('#form-reflexao').find('[name="eixo-reflexao"]:checked').val();
+    let texto = '';
     vetores.forEach(vetor => {
+        const antigo_x = vetor.x;
+        const antigo_y = vetor.y;
         if (eixo === 'x') {
             vetor = vetor.dot(new Vector(1, -1));
+            texto += `(${vetor.x}, ${vetor.y}) = (-1, 0) * (${antigo_x}, ${antigo_y})`;
         } else if (eixo === 'y'){
             vetor = vetor.dot(new Vector(-1, 1));
         } else if (eixo === 'origem') {
@@ -92,6 +96,22 @@ function dilatacao() {
     update_inputs();
 }
 
+function rotacao() {
+    // x’ = x . cos (q) – y . sen (q),
+    // y’ = x . sen (q) + y . cos (q)
+    const valor_rotacao = parseInt($('#graus').val());
+    const eixo_x = $('#centro-x').val();
+    const eixo_y = $('#centro-y').val();
+    vetores.forEach(vetor => {
+        // const antigo_x = vetor.x;
+        // const antigo_y = vetor.y;
+        const x = vetor.x * Math.cos(valor_rotacao) - vetor.y * Math.sin(valor_rotacao);
+        const y = vetor.x * Math.sin(valor_rotacao) + vetor.y * Math.cos(valor_rotacao);
+        vetor = new Vector(x, y);
+        draw_line(vetor);
+    });
+}
+
 $('#vetores').change(function() {
     let eixo_x = $('#eixo-x').val();
     let eixo_y = $('#eixo-y').val();
@@ -110,6 +130,11 @@ $('#aplicar-dilatacao').click(function() {
     dilatacao();
     $('#item-dilatacao').slideDown();
 });
+
+$('#aplicar-rotacao').click(function() {
+    rotacao();
+    // $('#item-rotacao').slideDown();
+})
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
