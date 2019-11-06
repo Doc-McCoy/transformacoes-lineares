@@ -39,12 +39,15 @@ function update_inputs() {
 }
 
 function change_vectors_count() {
+    let coluna = $('#inputs-vetores');
+    let divs = coluna.find("[clone=1]");
+
     let quant_vetores = $('#quant-vetores').val();
     for (let i = 0; i < quant_vetores; i++) {
         let div = $('.vetor').clone();
-        let coluna = $('#inputs-vetores');
-        // Coluna.append(div);
-        // div.show();
+        div.attr('clone', 1);
+        coluna.append(div);
+        div.show();
     }
 }
 
@@ -95,6 +98,8 @@ $('#vetores').change(function() {
     let ponto = new Vector(eixo_x, eixo_y);
     draw_line(ponto);
 });
+
+// $('#quant-vetores').change(change_vectors_count);
 
 $('#aplicar-reflexao').click(function() {
     reflexao();
