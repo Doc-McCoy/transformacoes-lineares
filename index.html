@@ -39,6 +39,7 @@
                     <div class="ui divider"></div>
 
                     <div class="ui equal width grid" id="inputs-vetores">
+
                         <div class="column">
                             <div class="ui form" id="ponto-a">
                                 <div class="field">
@@ -77,6 +78,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -144,17 +146,23 @@
                             <!-- ################################################################################################ -->
 
                             <div class="ui bottom attached tab segment" data-tab="dilatacoes">
-                                <div class="ui form">
+                                <div class="ui form" id="form-dilatacao">
                                     <div class="three wide field">
                                         <label>Valor:</label>
                                         <input type="text" id="valor-dilatacao">
                                     </div>
                                     <div class="field">
                                         <div class="grouped fields">
-                                            <label>Eixo:</label>
+                                            <label>Direção:</label>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" name="eixo-dilatacao" value="x" checked="checked">
+                                                    <input type="radio" name="eixo-dilatacao" value="vetor" checked="checked">
+                                                    <label>Direção do vetor</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="eixo-dilatacao" value="x">
                                                     <label>X</label>
                                                 </div>
                                             </div>

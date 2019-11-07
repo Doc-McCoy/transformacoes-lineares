@@ -30,10 +30,16 @@ function draw_line(vector) {
 }
 
 function update_inputs() {
-    vetores.forEach(element => {
-        $('#eixo-x').val(element.x);
-        $('#eixo-y').val(element.y);
-    });
+    $('#ponto-a').find('#eixo-x').val(vetores[0].x);
+    $('#ponto-a').find('#eixo-y').val(vetores[0].y);
+    $('#ponto-b').find('#eixo-x').val(vetores[1].x);
+    $('#ponto-b').find('#eixo-y').val(vetores[1].y);
+    $('#ponto-c').find('#eixo-x').val(vetores[2].x);
+    $('#ponto-c').find('#eixo-y').val(vetores[2].y);
+    /* vetores.forEach(vetor => {
+        $('#eixo-x').val(vetor.x);
+        $('#eixo-y').val(vetor.y);
+    }); */
 }
 
 function map(value, x1, y1, x2, y2) {
@@ -57,6 +63,7 @@ function map_vector(vector) {
 }
 
 function reflexao() {
+    clear_canvas();
     const eixo = $('#form-reflexao').find('[name="eixo-reflexao"]:checked').val();
     let texto = '';
     vetores.forEach(vetor => {
@@ -76,22 +83,35 @@ function reflexao() {
 }
 
 function dilatacao() {
+    clear_canvas();
     const valor = $('#valor-dilatacao').val();
+    const direcao = $('#form-dilatacao').find('[name="eixo-dilatacao"]:checked').val();
     let texto = '';
     vetores.forEach(vetor => {
         const antigo_x = vetor.x;
         const antigo_y = vetor.y;
-        vetor = Vector.mul(vetor, parseFloat(valor));
+        if (direcao === 'vetor') {
+            vetor = Vector.mul(vetor, parseFloat(valor));
+            texto += `(${vetor.x}, ${vetor.y}) = ${valor} * (${antigo_x}, ${antigo_y})`;
+        } else if (direcao === 'x') {
+
+        } else if (direcao === 'y') {
+
+        }
         draw_line(vetor);
-        texto += `(${vetor.x}, ${vetor.y}) = ${valor} * (${antigo_x}, ${antigo_y})`;
     });
     $('#explicacao-dilatacao').text(texto);
     update_inputs();
 }
 
+function cisalhamento() {
+    clear_canvas();
+}
+
 function rotacao() {
     // x’ = x . cos (q) – y . sen (q)
     // y’ = x . sen (q) + y . cos (q)
+    clear_canvas();
     const valor_rotacao = parseFloat($('#graus').val());
     const valor_convertido = toRadians(valor_rotacao);
     const eixo_rotacao_x = $('#centro-x').val();
