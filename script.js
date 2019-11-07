@@ -19,7 +19,6 @@ function clear_canvas() {
 }
 
 function draw_line(vector) {
-    vetores.push(vector);
     const vetor_corrigido = map_vector(vector);
     ctx.beginPath();
     ctx.lineWidth = 3;
@@ -36,10 +35,6 @@ function update_inputs() {
     $('#ponto-b').find('#eixo-y').val(vetores[1].y);
     $('#ponto-c').find('#eixo-x').val(vetores[2].x);
     $('#ponto-c').find('#eixo-y').val(vetores[2].y);
-    /* vetores.forEach(vetor => {
-        $('#eixo-x').val(vetor.x);
-        $('#eixo-y').val(vetor.y);
-    }); */
 }
 
 function map(value, x1, y1, x2, y2) {
@@ -66,6 +61,7 @@ function reflexao() {
     clear_canvas();
     const eixo = $('#form-reflexao').find('[name="eixo-reflexao"]:checked').val();
     let texto = '';
+    let novos_vetores = [];
     vetores.forEach(vetor => {
         const antigo_x = vetor.x;
         const antigo_y = vetor.y;
@@ -77,8 +73,10 @@ function reflexao() {
         } else if (eixo === 'origem') {
             vetor = vetor.dot(new Vector(-1, -1));
         }
+        novos_vetores.push(vetor);
         draw_line(vetor);
     });
+    vetores = novos_vetores;
     update_inputs();
 }
 
@@ -87,6 +85,7 @@ function dilatacao() {
     const valor = $('#valor-dilatacao').val();
     const direcao = $('#form-dilatacao').find('[name="eixo-dilatacao"]:checked').val();
     let texto = '';
+    let novos_vetores = [];
     vetores.forEach(vetor => {
         const antigo_x = vetor.x;
         const antigo_y = vetor.y;
@@ -98,9 +97,11 @@ function dilatacao() {
         } else if (direcao === 'y') {
 
         }
+        novos_vetores.push(vetor);
         draw_line(vetor);
     });
     $('#explicacao-dilatacao').text(texto);
+    vetores = novos_vetores;
     update_inputs();
 }
 
@@ -116,16 +117,18 @@ function rotacao() {
     const valor_convertido = toRadians(valor_rotacao);
     const eixo_rotacao_x = $('#centro-x').val();
     const eixo_rotacao_y = $('#centro-y').val();
+    let novos_vetores = [];
     vetores.forEach(vetor => {
         const antigo_x = vetor.x;
         const antigo_y = vetor.y;
         const x = vetor.x * Math.cos(valor_convertido) - vetor.y * Math.sin(valor_convertido);
         const y = vetor.x * Math.sin(valor_convertido) + vetor.y * Math.cos(valor_convertido);
-
-        vetor = new Vector(x, y);
-        draw_line(vetor);
+        vetor_rotacionado = new Vector(x.toFixed(2), y.toFixed(2));
+        novos_vetores.push(vetor_rotacionado);
+        draw_line(vetor_rotacionado);
     });
     // $('#explicacao-rotacao').text(texto);
+    vetores = novos_vetores;
     update_inputs();
 }
 
@@ -137,16 +140,29 @@ $('#vetores').change(function() {
 });
 
 $('#inputs-vetores').change(function() {
+    clear_canvas();
+    vetores = [];
     const ponto_a_x = $('#ponto-a').find('#eixo-x').val();
     const ponto_a_y = $('#ponto-a').find('#eixo-y').val();
     const ponto_b_x = $('#ponto-b').find('#eixo-x').val();
     const ponto_b_y = $('#ponto-b').find('#eixo-y').val();
     const ponto_c_x = $('#ponto-c').find('#eixo-x').val();
     const ponto_c_y = $('#ponto-c').find('#eixo-y').val();
-    clear_canvas();
-    draw_line(new Vector(ponto_a_x, ponto_a_y));
-    draw_line(new Vector(ponto_b_x, ponto_b_y));
-    draw_line(new Vector(ponto_c_x, ponto_c_y));
+    if (ponto_a_x && ponto_a_y) {
+        const vetor_a = new Vector(ponto_a_x, ponto_a_y);
+        vetores.push(vetor_a);
+        draw_line(vetor_a);
+    }
+    if (ponto_b_x && ponto_b_y) {
+        const vetor_b = new Vector(ponto_b_x, ponto_b_y);
+        vetores.push(vetor_b);
+        draw_line(vetor_b);
+    }
+    if (ponto_c_x && ponto_c_y) {
+        const vetor_c = new Vector(ponto_c_x, ponto_c_y);
+        vetores.push(vetor_c);
+        draw_line(vetor_c);
+    }
 });
 
 $('#aplicar-reflexao').click(function() {
