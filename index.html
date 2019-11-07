@@ -32,25 +32,15 @@
             </div>
 
             <div class="column">
-                <div class="ui message" id="elemento-vetores">
+                <div class="ui message">
                     <div class="header">
-                        <h3>Vetores:</h3>
+                        <h3>Pontos:</h3>
                     </div>
-
                     <div class="ui divider"></div>
 
                     <div class="ui equal width grid" id="inputs-vetores">
                         <div class="column">
-                            <form class="ui form">
-                                <div class="field">
-                                    <label>Quantidade</label>
-                                    <input type="text" name="quant-vetores" id="quant-vetores">
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="column vetor">
-                            <form class="ui form" id="vetores">
+                            <div class="ui form" id="ponto-a">
                                 <div class="field">
                                     <label>Eixo X</label>
                                     <input type="text" name="eixo-x" id="eixo-x">
@@ -59,10 +49,36 @@
                                     <label>Eixo Y</label>
                                     <input type="text" name="eixo-y" id="eixo-y">
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
+                        <div class="column">
+                            <div class="ui form" id="ponto-b">
+                                <div class="field">
+                                    <label>Eixo X</label>
+                                    <input type="text" name="eixo-x" id="eixo-x">
+                                </div>
+                                <div class="field">
+                                    <label>Eixo Y</label>
+                                    <input type="text" name="eixo-y" id="eixo-y">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="ui form" id="ponto-c">
+                                <div class="field">
+                                    <label>Eixo X</label>
+                                    <input type="text" name="eixo-x" id="eixo-x">
+                                </div>
+                                <div class="field">
+                                    <label>Eixo Y</label>
+                                    <input type="text" name="eixo-y" id="eixo-y">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="ui message">
@@ -132,6 +148,23 @@
                                     <div class="three wide field">
                                         <label>Valor:</label>
                                         <input type="text" id="valor-dilatacao">
+                                    </div>
+                                    <div class="field">
+                                        <div class="grouped fields">
+                                            <label>Eixo:</label>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="eixo-dilatacao" value="x" checked="checked">
+                                                    <label>X</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="eixo-dilatacao" value="y">
+                                                    <label>Y</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <button id="aplicar-dilatacao" class="ui primary button">
                                         Aplicar

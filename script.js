@@ -19,9 +19,7 @@ function clear_canvas() {
 }
 
 function draw_line(vector) {
-    vetores = [];
     vetores.push(vector);
-    clear_canvas();
     const vetor_corrigido = map_vector(vector);
     ctx.beginPath();
     ctx.lineWidth = 3;
@@ -38,19 +36,6 @@ function update_inputs() {
     });
 }
 
-function change_vectors_count() {
-    let coluna = $('#inputs-vetores');
-    let divs = coluna.find("[clone=1]");
-
-    let quant_vetores = $('#quant-vetores').val();
-    for (let i = 0; i < quant_vetores; i++) {
-        let div = $('.vetor').clone();
-        div.attr('clone', 1);
-        coluna.append(div);
-        div.show();
-    }
-}
-
 function map(value, x1, y1, x2, y2) {
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 }
@@ -61,7 +46,7 @@ function toDegrees(angle) {
 
 function toRadians(angle) {
     return angle * (Math.PI / 180);
-  }
+}
 
 function map_vector(vector) {
     const min_coord = -10;
@@ -131,7 +116,18 @@ $('#vetores').change(function() {
     draw_line(ponto);
 });
 
-// $('#quant-vetores').change(change_vectors_count);
+$('#inputs-vetores').change(function() {
+    const ponto_a_x = $('#ponto-a').find('#eixo-x').val();
+    const ponto_a_y = $('#ponto-a').find('#eixo-y').val();
+    const ponto_b_x = $('#ponto-b').find('#eixo-x').val();
+    const ponto_b_y = $('#ponto-b').find('#eixo-y').val();
+    const ponto_c_x = $('#ponto-c').find('#eixo-x').val();
+    const ponto_c_y = $('#ponto-c').find('#eixo-y').val();
+    clear_canvas();
+    draw_line(new Vector(ponto_a_x, ponto_a_y));
+    draw_line(new Vector(ponto_b_x, ponto_b_y));
+    draw_line(new Vector(ponto_c_x, ponto_c_y));
+});
 
 $('#aplicar-reflexao').click(function() {
     reflexao();
