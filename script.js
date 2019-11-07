@@ -97,19 +97,21 @@ function dilatacao() {
 }
 
 function rotacao() {
-    // x’ = x . cos (q) – y . sen (q),
+    // x’ = x . cos (q) – y . sen (q)
     // y’ = x . sen (q) + y . cos (q)
     const valor_rotacao = parseInt($('#graus').val());
-    const eixo_x = $('#centro-x').val();
-    const eixo_y = $('#centro-y').val();
+    const eixo_rotacao_x = $('#centro-x').val();
+    const eixo_rotacao_y = $('#centro-y').val();
     vetores.forEach(vetor => {
-        // const antigo_x = vetor.x;
-        // const antigo_y = vetor.y;
+        const antigo_x = vetor.x;
+        const antigo_y = vetor.y;
         const x = vetor.x * Math.cos(valor_rotacao) - vetor.y * Math.sin(valor_rotacao);
         const y = vetor.x * Math.sin(valor_rotacao) + vetor.y * Math.cos(valor_rotacao);
         vetor = new Vector(x, y);
         draw_line(vetor);
     });
+    $('#explicacao-rotacao').text(texto);
+    update_inputs();
 }
 
 $('#vetores').change(function() {
@@ -133,7 +135,7 @@ $('#aplicar-dilatacao').click(function() {
 
 $('#aplicar-rotacao').click(function() {
     rotacao();
-    // $('#item-rotacao').slideDown();
+    $('#item-rotacao').slideDown();
 })
 
 const canvas = document.getElementById('canvas');
