@@ -55,6 +55,14 @@ function map(value, x1, y1, x2, y2) {
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 }
 
+function toDegrees(angle) {
+    return angle * (180 / Math.PI);
+}
+
+function toRadians(angle) {
+    return angle * (Math.PI / 180);
+  }
+
 function map_vector(vector) {
     const min_coord = -10;
     const max_coord = 10;
@@ -99,18 +107,20 @@ function dilatacao() {
 function rotacao() {
     // x’ = x . cos (q) – y . sen (q)
     // y’ = x . sen (q) + y . cos (q)
-    const valor_rotacao = parseInt($('#graus').val());
+    const valor_rotacao = parseFloat($('#graus').val());
+    const valor_convertido = toRadians(valor_rotacao);
     const eixo_rotacao_x = $('#centro-x').val();
     const eixo_rotacao_y = $('#centro-y').val();
     vetores.forEach(vetor => {
         const antigo_x = vetor.x;
         const antigo_y = vetor.y;
-        const x = vetor.x * Math.cos(valor_rotacao) - vetor.y * Math.sin(valor_rotacao);
-        const y = vetor.x * Math.sin(valor_rotacao) + vetor.y * Math.cos(valor_rotacao);
+        const x = vetor.x * Math.cos(valor_convertido) - vetor.y * Math.sin(valor_convertido);
+        const y = vetor.x * Math.sin(valor_convertido) + vetor.y * Math.cos(valor_convertido);
+
         vetor = new Vector(x, y);
         draw_line(vetor);
     });
-    $('#explicacao-rotacao').text(texto);
+    // $('#explicacao-rotacao').text(texto);
     update_inputs();
 }
 
