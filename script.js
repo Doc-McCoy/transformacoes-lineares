@@ -18,7 +18,28 @@ function clear_canvas() {
     draw_axes();
 }
 
-function draw_line(vector) {
+/**
+ * Função default que deve ser chamada sempre para desenhar
+ * algo no canvas. Ela faz a diferença entre desenhar no
+ * modo objeto ou no modo vetor.
+ * @param {Vector} vetor
+ */
+function draw_on_canvas(vetor=null) {
+    const modo_desenho = $('#modo-desenho').is(':checked');
+    if (modo_desenho) {
+        clear_canvas();
+        draw_object();
+    } else {
+        draw_line_from_center(vetor);
+    }
+}
+
+/**
+ * Desenha um vetor que sai do centro do plano e termina
+ * nas coordenadas passadas na variável.
+ * @param {Vector} vector 
+ */
+function draw_line_from_center(vector) {
     const vetor_corrigido = map_vector(vector);
     ctx.beginPath();
     ctx.lineWidth = 3;
@@ -26,6 +47,56 @@ function draw_line(vector) {
     ctx.moveTo(250, 250);
     ctx.lineTo(vetor_corrigido.x, vetor_corrigido.y);
     ctx.stroke();
+}
+
+/**
+ * Desenha uma forma triangular com os vetores do array 'vetores'.
+ * Necessita de no mínimo 3 pontos definidos para isso.
+ * Também funciona para qualquer forma com mais de 2 pontos.
+ */
+function draw_object() {
+    if (vetores.length > 2) {
+        ctx.beginPath();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'blue';
+        const ponto_a = map_vector(vetores[0]);
+        ctx.moveTo(ponto_a.x, ponto_a.y);
+        for (let i = 1; i < vetores.length; i++) {
+            let ponto_x = map_vector(vetores[i]);
+            ctx.lineTo(ponto_x.x, ponto_x.y);
+        }
+        ctx.lineTo(ponto_a.x, ponto_a.y);
+        ctx.stroke();
+    }
+}
+
+function inputs_changed() {
+    clear_canvas();
+    vetores = [];
+    const ponto_a_x = $('#ponto-a').find('#eixo-x').val();
+    const ponto_a_y = $('#ponto-a').find('#eixo-y').val();
+    const ponto_b_x = $('#ponto-b').find('#eixo-x').val();
+    const ponto_b_y = $('#ponto-b').find('#eixo-y').val();
+    const ponto_c_x = $('#ponto-c').find('#eixo-x').val();
+    const ponto_c_y = $('#ponto-c').find('#eixo-y').val();
+    if (ponto_a_x && ponto_a_y) {
+        const vetor_a = new Vector(ponto_a_x, ponto_a_y);
+        vetores.push(vetor_a);
+        // draw_line_from_center(vetor_a);
+        draw_on_canvas(vetor_a);
+    }
+    if (ponto_b_x && ponto_b_y) {
+        const vetor_b = new Vector(ponto_b_x, ponto_b_y);
+        vetores.push(vetor_b);
+        // draw_line_from_center(vetor_b);
+        draw_on_canvas(vetor_b);
+    }
+    if (ponto_c_x && ponto_c_y) {
+        const vetor_c = new Vector(ponto_c_x, ponto_c_y);
+        vetores.push(vetor_c);
+        // draw_line_from_center(vetor_c);
+        draw_on_canvas(vetor_c);
+    }
 }
 
 function update_inputs() {
@@ -74,7 +145,7 @@ function reflexao() {
             vetor = vetor.dot(new Vector(-1, -1));
         }
         novos_vetores.push(vetor);
-        draw_line(vetor);
+        draw_line_from_center(vetor);
     });
     vetores = novos_vetores;
     update_inputs();
@@ -98,7 +169,7 @@ function dilatacao() {
 
         }
         novos_vetores.push(vetor);
-        draw_line(vetor);
+        draw_line_from_center(vetor);
     });
     $('#explicacao-dilatacao').text(texto);
     vetores = novos_vetores;
@@ -125,43 +196,20 @@ function rotacao() {
         const y = vetor.x * Math.sin(valor_convertido) + vetor.y * Math.cos(valor_convertido);
         vetor_rotacionado = new Vector(x.toFixed(2), y.toFixed(2));
         novos_vetores.push(vetor_rotacionado);
-        draw_line(vetor_rotacionado);
+        draw_line_from_center(vetor_rotacionado);
     });
     // $('#explicacao-rotacao').text(texto);
     vetores = novos_vetores;
     update_inputs();
 }
 
-$('#vetores').change(function() {
-    let eixo_x = $('#eixo-x').val();
-    let eixo_y = $('#eixo-y').val();
-    let ponto = new Vector(eixo_x, eixo_y);
-    draw_line(ponto);
-});
+$('#inputs-vetores').change(inputs_changed);
 
-$('#inputs-vetores').change(function() {
-    clear_canvas();
-    vetores = [];
-    const ponto_a_x = $('#ponto-a').find('#eixo-x').val();
-    const ponto_a_y = $('#ponto-a').find('#eixo-y').val();
-    const ponto_b_x = $('#ponto-b').find('#eixo-x').val();
-    const ponto_b_y = $('#ponto-b').find('#eixo-y').val();
-    const ponto_c_x = $('#ponto-c').find('#eixo-x').val();
-    const ponto_c_y = $('#ponto-c').find('#eixo-y').val();
-    if (ponto_a_x && ponto_a_y) {
-        const vetor_a = new Vector(ponto_a_x, ponto_a_y);
-        vetores.push(vetor_a);
-        draw_line(vetor_a);
-    }
-    if (ponto_b_x && ponto_b_y) {
-        const vetor_b = new Vector(ponto_b_x, ponto_b_y);
-        vetores.push(vetor_b);
-        draw_line(vetor_b);
-    }
-    if (ponto_c_x && ponto_c_y) {
-        const vetor_c = new Vector(ponto_c_x, ponto_c_y);
-        vetores.push(vetor_c);
-        draw_line(vetor_c);
+$('#modo-desenho').change(function() {
+    if ($(this).is(':checked')) {
+        draw_on_canvas();
+    } else {
+        inputs_changed();
     }
 });
 
@@ -180,6 +228,7 @@ $('#aplicar-rotacao').click(function() {
     $('#item-rotacao').slideDown();
 })
 
+// Globals
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let vetores = [];
