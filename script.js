@@ -145,7 +145,7 @@ function reflexao() {
             vetor = vetor.dot(new Vector(-1, -1));
         }
         novos_vetores.push(vetor);
-        draw_line_from_center(vetor);
+        draw_on_canvas(vetor);
     });
     vetores = novos_vetores;
     update_inputs();
@@ -164,12 +164,13 @@ function dilatacao() {
             vetor = Vector.mul(vetor, parseFloat(valor));
             texto += `(${vetor.x}, ${vetor.y}) = ${valor} * (${antigo_x}, ${antigo_y})`;
         } else if (direcao === 'x') {
-
+            vetor = Vector.dot(vetor, new Vector(valor, 1));
         } else if (direcao === 'y') {
+            vetor = Vector.dot(vetor, new Vector(1, valor));
 
         }
         novos_vetores.push(vetor);
-        draw_line_from_center(vetor);
+        draw_on_canvas(vetor);
     });
     $('#explicacao-dilatacao').text(texto);
     vetores = novos_vetores;
@@ -196,7 +197,7 @@ function rotacao() {
         const y = vetor.x * Math.sin(valor_convertido) + vetor.y * Math.cos(valor_convertido);
         vetor_rotacionado = new Vector(x.toFixed(2), y.toFixed(2));
         novos_vetores.push(vetor_rotacionado);
-        draw_line_from_center(vetor_rotacionado);
+        draw_on_canvas(vetor_rotacionado);
     });
     // $('#explicacao-rotacao').text(texto);
     vetores = novos_vetores;
