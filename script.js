@@ -162,17 +162,17 @@ function dilatacao() {
         const antigo_y = vetor.y;
         if (direcao === 'vetor') {
             vetor = Vector.mul(vetor, parseFloat(valor));
-            texto += `(${vetor.x}, ${vetor.y}) = ${valor} * (${antigo_x}, ${antigo_y})`;
+            // texto += `(${vetor.x}, ${vetor.y}) = ${valor} * (${antigo_x}, ${antigo_y})`;
         } else if (direcao === 'x') {
-            vetor = Vector.dot(vetor, new Vector(valor, 1));
+            vetor = new Vector(valor * vetor.x, vetor.y);
         } else if (direcao === 'y') {
-            vetor = Vector.dot(vetor, new Vector(1, valor));
+            vetor = new Vector(vetor.x, valor * vetor.y);
 
         }
         novos_vetores.push(vetor);
         draw_on_canvas(vetor);
     });
-    $('#explicacao-dilatacao').text(texto);
+    // $('#explicacao-dilatacao').text(texto);
     vetores = novos_vetores;
     update_inputs();
 }
