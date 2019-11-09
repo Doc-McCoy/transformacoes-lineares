@@ -62,11 +62,11 @@ function cisalhamento() {
     vetores.forEach(vetor => {
 
         if (eixo === 'x') {
-            let x = vetor.x + alpha * vetor.y;
+            const x = vetor.x + alpha * vetor.y;
             vetor = new Vector(x, vetor.y);
 
         } else if (eixo === 'y') {
-            let y = vetor.y + alpha * vetor.x;
+            const y = vetor.y + alpha * vetor.x;
             vetor = new Vector(vetor.x, y);
         }
 
