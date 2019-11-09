@@ -44,12 +44,6 @@ function draw_line_from_center(vector) {
     if (vector.x != 0 || vector.y != 0) {
         canvas_arrow(250, 250, vetor_corrigido.x, vetor_corrigido.y);
     }
-    /* ctx.beginPath();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = 'blue';
-    ctx.moveTo(250, 250);
-    ctx.lineTo(vetor_corrigido.x, vetor_corrigido.y);
-    ctx.stroke(); */
 }
 
 /**
