@@ -48,12 +48,10 @@ $('#modo-desenho').change(function() {
 
 $('#aplicar-reflexao').click(function() {
     reflexao();
-    // $('#explicacao').slideDown();
 });
 
 $('#aplicar-dilatacao').click(function() {
     dilatacao();
-    // $('#item-dilatacao').slideDown();
 });
 
 $('#aplicar-cisalhamento').click(function() {
@@ -62,7 +60,6 @@ $('#aplicar-cisalhamento').click(function() {
 
 $('#aplicar-rotacao').click(function() {
     rotacao();
-    // $('#item-rotacao').slideDown();
 })
 
 // Globals
