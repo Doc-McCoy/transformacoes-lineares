@@ -10,19 +10,16 @@ function inputs_changed() {
     if (ponto_a_x && ponto_a_y) {
         const vetor_a = new Vector(ponto_a_x, ponto_a_y);
         vetores.push(vetor_a);
-        // draw_line_from_center(vetor_a);
         draw_on_canvas(vetor_a);
     }
     if (ponto_b_x && ponto_b_y) {
         const vetor_b = new Vector(ponto_b_x, ponto_b_y);
         vetores.push(vetor_b);
-        // draw_line_from_center(vetor_b);
         draw_on_canvas(vetor_b);
     }
     if (ponto_c_x && ponto_c_y) {
         const vetor_c = new Vector(ponto_c_x, ponto_c_y);
         vetores.push(vetor_c);
-        // draw_line_from_center(vetor_c);
         draw_on_canvas(vetor_c);
     }
 }
