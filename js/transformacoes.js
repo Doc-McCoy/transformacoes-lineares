@@ -17,10 +17,10 @@ function reflexao() {
         }
 
         novos_vetores.push(vetor);
-        draw_on_canvas(vetor);
     });
-
+    
     vetores = novos_vetores;
+    draw_on_canvas();
     update_inputs();
 }
 
@@ -42,13 +42,13 @@ function dilatacao() {
 
         } else if (direcao === 'y') {
             vetor = new Vector(vetor.x, alpha * vetor.y);
-
         }
-        novos_vetores.push(vetor);
-        draw_on_canvas(vetor);
-    });
 
+        novos_vetores.push(vetor);
+    });
+    
     vetores = novos_vetores;
+    draw_on_canvas();
     update_inputs();
 }
 
@@ -71,10 +71,10 @@ function cisalhamento() {
         }
 
         novos_vetores.push(vetor);
-        draw_on_canvas(vetor);
     });
 
     vetores = novos_vetores;
+    draw_on_canvas();
     update_inputs();
 }
 
@@ -94,9 +94,9 @@ function rotacao() {
         vetor_rotacionado = new Vector(x.toFixed(2), y.toFixed(2));
 
         novos_vetores.push(vetor_rotacionado);
-        draw_on_canvas(vetor_rotacionado);
     });
 
     vetores = novos_vetores;
+    draw_on_canvas();
     update_inputs();
 }

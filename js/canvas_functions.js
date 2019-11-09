@@ -22,15 +22,16 @@ function clear_canvas() {
  * Função default que deve ser chamada sempre para desenhar
  * algo no canvas. Ela faz a diferença entre desenhar no
  * modo objeto ou no modo vetor.
- * @param {Vector} vetor
  */
-function draw_on_canvas(vetor=null) {
+function draw_on_canvas() {
     const modo_desenho = $('#modo-desenho').is(':checked');
     if (modo_desenho) {
         clear_canvas();
         draw_object();
     } else {
-        draw_line_from_center(vetor);
+        vetores.forEach(vetor => {
+            draw_line_from_center(vetor);
+        });
     }
 }
 
