@@ -58,11 +58,11 @@
                             <div class="ui form" id="ponto-a">
                                 <div class="field">
                                     <label>Eixo X</label>
-                                    <input type="text" name="eixo-x" id="eixo-x">
+                                    <input type="text" name="eixo-x" id="eixo-x" value="0">
                                 </div>
                                 <div class="field">
                                     <label>Eixo Y</label>
-                                    <input type="text" name="eixo-y" id="eixo-y">
+                                    <input type="text" name="eixo-y" id="eixo-y" value="0">
                                 </div>
                             </div>
                         </div>
@@ -71,11 +71,11 @@
                             <div class="ui form" id="ponto-b">
                                 <div class="field">
                                     <label>Eixo X</label>
-                                    <input type="text" name="eixo-x" id="eixo-x">
+                                    <input type="text" name="eixo-x" id="eixo-x" value="0">
                                 </div>
                                 <div class="field">
                                     <label>Eixo Y</label>
-                                    <input type="text" name="eixo-y" id="eixo-y">
+                                    <input type="text" name="eixo-y" id="eixo-y" value="0">
                                 </div>
                             </div>
                         </div>
@@ -84,11 +84,11 @@
                             <div class="ui form" id="ponto-c">
                                 <div class="field">
                                     <label>Eixo X</label>
-                                    <input type="text" name="eixo-x" id="eixo-x">
+                                    <input type="text" name="eixo-x" id="eixo-x" value="0">
                                 </div>
                                 <div class="field">
                                     <label>Eixo Y</label>
-                                    <input type="text" name="eixo-y" id="eixo-y">
+                                    <input type="text" name="eixo-y" id="eixo-y" value="0">
                                 </div>
                             </div>
                         </div>
@@ -143,18 +143,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="ui divider"></div>
-                                <div class="column">
-                                    <div class="ui items" id="explicacao" style="display:none;">
-                                        <div class="item">
-                                            <div class="middle aligned content">
-                                                <div class="header">
-                                                    <span id="explicacao-reflexao"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- ################################################################################################ -->
@@ -192,26 +180,36 @@
                                         Aplicar
                                     </button>
                                 </div>
-                                <div class="ui divider"></div>
-                                <div class="ui items" id="item-dilatacao" style="display:none;">
-                                    <div class="item">
-                                        <div class="middle aligned content">
-                                            <div class="header">
-                                                <span id="explicacao-dilatacao"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- ################################################################################################ -->
 
                             <div class="ui bottom attached tab segment" data-tab="cisalhamento">
-                                <div class="ui form">
-                                    <div class="field">
-                                        <label>User Input</label>
-                                        <input type="text">
+                                <div class="ui form" id="form-cisalhamento">
+                                    <div class="three wide field">
+                                        <label>Valor:</label>
+                                        <input type="text" id="valor-cisalhamento">
                                     </div>
+                                    <div class="field">
+                                        <div class="grouped fields">
+                                            <label>Eixo:</label>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="eixo-cisalhamento" value="x" checked="checked">
+                                                    <label>X</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="eixo-cisalhamento" value="y">
+                                                    <label>Y</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="aplicar-cisalhamento" class="ui primary button">
+                                        Aplicar
+                                    </button>
                                 </div>
                             </div>
 
@@ -223,27 +221,17 @@
                                         <label>Graus</label>
                                         <input type="text" name="graus" id="graus">
                                     </div>
-                                    <div class="field">
+                                    <!-- <div class="field">
                                         <label>Centro X</label>
                                         <input type="text" name="centro-x" id="centro-x">
                                     </div>
                                     <div class="field">
                                         <label>Centro Y</label>
                                         <input type="text" name="centro-y" id="centro-y">
-                                    </div>
+                                    </div> -->
                                     <button id="aplicar-rotacao" class="ui primary button">
                                         Aplicar
                                     </button>
-                                </div>
-                                <div class="ui divider"></div>
-                                <div class="ui items" id="item-rotacao" style="display:none;">
-                                    <div class="item">
-                                        <div class="middle aligned content">
-                                            <div class="header">
-                                                <span id="explicacao-rotacao"></span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 

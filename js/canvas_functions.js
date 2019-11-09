@@ -41,12 +41,15 @@ function draw_on_canvas(vetor=null) {
  */
 function draw_line_from_center(vector) {
     const vetor_corrigido = map_vector(vector);
-    ctx.beginPath();
+    if (vector.x != 0 || vector.y != 0) {
+        canvas_arrow(250, 250, vetor_corrigido.x, vetor_corrigido.y);
+    }
+    /* ctx.beginPath();
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'blue';
     ctx.moveTo(250, 250);
     ctx.lineTo(vetor_corrigido.x, vetor_corrigido.y);
-    ctx.stroke();
+    ctx.stroke(); */
 }
 
 /**
@@ -76,4 +79,20 @@ function map_vector(vector) {
     const x = map(vector.x, min_coord, max_coord, 0, canvas.width);
     const y = map(vector.y, max_coord, min_coord, 0, canvas.height);
     return new Vector(x, y);
+}
+
+function canvas_arrow(fromx, fromy, tox, toy) {
+    const headlen = 15;
+    const dx = tox - fromx;
+    const dy = toy - fromy;
+    const angle = Math.atan2(dy, dx);
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'blue';
+    ctx.moveTo(fromx, fromy);
+    ctx.lineTo(tox, toy);
+    ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(tox, toy);
+    ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+    ctx.stroke();
 }

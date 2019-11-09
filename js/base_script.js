@@ -28,12 +28,12 @@ function inputs_changed() {
 }
 
 function update_inputs() {
-    $('#ponto-a').find('#eixo-x').val(vetores[0].x);
-    $('#ponto-a').find('#eixo-y').val(vetores[0].y);
-    $('#ponto-b').find('#eixo-x').val(vetores[1].x);
-    $('#ponto-b').find('#eixo-y').val(vetores[1].y);
-    $('#ponto-c').find('#eixo-x').val(vetores[2].x);
-    $('#ponto-c').find('#eixo-y').val(vetores[2].y);
+    $('#ponto-a').find('#eixo-x').val(vetores[0].x.toFixed(2));
+    $('#ponto-a').find('#eixo-y').val(vetores[0].y.toFixed(2));
+    $('#ponto-b').find('#eixo-x').val(vetores[1].x.toFixed(2));
+    $('#ponto-b').find('#eixo-y').val(vetores[1].y.toFixed(2));
+    $('#ponto-c').find('#eixo-x').val(vetores[2].x.toFixed(2));
+    $('#ponto-c').find('#eixo-y').val(vetores[2].y.toFixed(2));
 }
 
 $('#inputs-vetores').change(inputs_changed);
@@ -48,17 +48,21 @@ $('#modo-desenho').change(function() {
 
 $('#aplicar-reflexao').click(function() {
     reflexao();
-    $('#explicacao').slideDown();
+    // $('#explicacao').slideDown();
 });
 
 $('#aplicar-dilatacao').click(function() {
     dilatacao();
-    $('#item-dilatacao').slideDown();
+    // $('#item-dilatacao').slideDown();
+});
+
+$('#aplicar-cisalhamento').click(function() {
+    cisalhamento();
 });
 
 $('#aplicar-rotacao').click(function() {
     rotacao();
-    $('#item-rotacao').slideDown();
+    // $('#item-rotacao').slideDown();
 })
 
 // Globals
