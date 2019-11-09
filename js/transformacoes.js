@@ -35,7 +35,7 @@ function dilatacao() {
     vetores.forEach(vetor => {
 
         if (direcao === 'vetor') {
-            vetor = Vector.mul(vetor, parseFloat(alpha));
+            vetor = new Vector(alpha * vetor.x, alpha * vetor.y);
 
         } else if (direcao === 'x') {
             vetor = new Vector(alpha * vetor.x, vetor.y);
