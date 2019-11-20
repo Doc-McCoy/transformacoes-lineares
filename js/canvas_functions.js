@@ -11,6 +11,43 @@ function draw_axes() {
     ctx.moveTo(250, 50);
     ctx.lineTo(250, 450);
     ctx.stroke();
+
+    draw_markers_on_x();
+    draw_markers_on_y();
+}
+
+function draw_markers_on_x() {
+    for (let i = -8; i < 9; i++) {
+        if (i === 0) continue;
+        ctx.beginPath();
+        ctx.strokeStyle = 'gray';
+        ctx.lineWidth = 1;
+
+        let vetor_a = new Vector(i, -0.3);
+        let vetor_b = new Vector(i, 0.3);
+        let point_a = map_vector(vetor_a);
+        let point_b = map_vector(vetor_b);
+        ctx.moveTo(point_a.x, point_a.y);
+        ctx.lineTo(point_b.x, point_b.y);
+        ctx.stroke();
+    }
+}
+
+function draw_markers_on_y() {
+    for (let i = -8; i < 9; i++) {
+        if (i === 0) continue;
+        ctx.beginPath();
+        ctx.strokeStyle = 'gray';
+        ctx.lineWidth = 1;
+
+        let vetor_a = new Vector(-0.3, i);
+        let vetor_b = new Vector(0.3, i);
+        let point_a = map_vector(vetor_a);
+        let point_b = map_vector(vetor_b);
+        ctx.moveTo(point_a.x, point_a.y);
+        ctx.lineTo(point_b.x, point_b.y);
+        ctx.stroke();
+    }
 }
 
 function clear_canvas() {
