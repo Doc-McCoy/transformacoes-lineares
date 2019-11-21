@@ -33,6 +33,11 @@ function update_inputs() {
     $('#ponto-c').find('#eixo-y').val(vetores[2].y.toFixed(2));
 }
 
+function modo_thais(on) {
+    const color = on ? "pink" : "white";
+    $('body').css("background-color", color);
+}
+
 $('#inputs-vetores').change(inputs_changed);
 
 $('#modo-desenho').change(function() {
@@ -40,6 +45,14 @@ $('#modo-desenho').change(function() {
         draw_on_canvas();
     } else {
         inputs_changed();
+    }
+});
+
+$('#modo-thais').change(function() {
+    if ($(this).is(':checked')) {
+        modo_thais(true);
+    } else {
+        modo_thais(false);
     }
 });
 
