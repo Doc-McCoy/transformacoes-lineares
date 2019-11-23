@@ -7,6 +7,7 @@ function inputs_changed() {
     const ponto_b_y = $('#ponto-b').find('#eixo-y').val();
     const ponto_c_x = $('#ponto-c').find('#eixo-x').val();
     const ponto_c_y = $('#ponto-c').find('#eixo-y').val();
+
     if (ponto_a_x && ponto_a_y) {
         const vetor_a = new Vector(ponto_a_x, ponto_a_y);
         vetores.push(vetor_a);
@@ -34,7 +35,7 @@ function update_inputs() {
 }
 
 function modo_thais(on) {
-    const color = on ? "pink" : "white";
+    const color = on ? "deeppink" : "white";
     $('body').css("background-color", color);
 }
 
