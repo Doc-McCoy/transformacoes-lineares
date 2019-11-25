@@ -5,3 +5,5 @@ Este projeto foi apresentado na matéria "Matemática aplicada aos jogos digitai
 
 Nele você pode desenhar até 3 vetores no plano cartesiano, e modificá-los através de reflexão, dilatação/contração, cisalhamento e rotação.
 
+## Exemplo:
+![print de exemplo](https://github.com/Doc-McCoy/transformacoes-lineares/blob/master/screenshots/print01.png)
