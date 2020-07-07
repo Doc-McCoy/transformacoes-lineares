@@ -1,4 +1,4 @@
-# transformacoes-lineares
+# Transformações Lineares
 Pequena aplicação, desenvolvida utilizando Jquery, Semantic UI, e uma lib para cálculos com vetores, para demonstrar transformações lineares no plano 2D.
 
 Este projeto foi apresentado na matéria "Matemática aplicada aos jogos digitais", no curso de **Jogos Digitais** na FATEC - Americana.
